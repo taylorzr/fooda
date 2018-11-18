@@ -18,13 +18,12 @@ create table orders (
   restaurant varchar(255) not null
 );
 
-insert into users(
-  email,
-  handle
-) values (
-  'taylorzr@gmail.com',
-  'nothotdog'
-);
+insert into
+users(email, handle)
+values
+('taylorzr@gmail.com', 'nothotdog'),
+('potato@example.test', 'potato')
+;
 
 insert into orders(user_id, delivery_date, restaurant)
 values (1, '2014-11-15', 'Taco Bell');
