@@ -6,14 +6,6 @@ import (
 )
 
 func CreateOrder(email string, deliveryDate time.Time, restaurant string) error {
-	// user := User{}
-
-	// query := `
-	//   SELECT users.id, users.email, users.handle FROM users
-	// 	WHERE users.email = $1
-	// `
-
-	// err := db.QueryRow(query, email).Scan(&user.ID, &user.Email, &user.Handle)
 	user, err := GetUser(email)
 
 	if err != nil {

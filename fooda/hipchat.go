@@ -13,8 +13,11 @@ func init() {
 	hipchatToken = os.Getenv("HIPCHAT_TOKEN")
 }
 
-func notification(message string) error {
-	url := fmt.Sprintf("http://api.hipchat.com/v2/room/test/notification?auth_token=%s", hipchatToken)
+type Hipchat struct {
+}
+
+func (Hipchat) Notify(userOrRoom string, message string) error {
+	url := fmt.Sprintf("http://api.hipchat.com/v2/room/%s/notification?auth_token=%s", userOrRoom, hipchatToken)
 
 	// use json.Marshal(data)
 	var json = []byte(fmt.Sprintf(`{"color": "purple", "message_format": "text", "message":"%s"}`, message))

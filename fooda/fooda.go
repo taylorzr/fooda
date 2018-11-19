@@ -1,15 +1,24 @@
 package fooda
 
-import (
-	"context"
-	"log"
-)
+var chat Chat
 
-func Remind(ctx context.Context) {
+func init() {
+	chat = Hipchat{}
+}
+
+type Chat interface {
+	Notify(string, string) error
+}
+
+func Remind(handle string) {
+	chat.Notify(handle, "Your forgot fooda!")
+}
+
+func Forgetters() ([]User, error) {
 	orders, err := TodaysOrders()
 
 	if err != nil {
-		log.Fatal(err)
+		return nil, err
 	}
 
 	users, err := AllUsers()
@@ -20,11 +29,12 @@ User:
 	for _, user := range users {
 		for _, order := range orders {
 			if user.Email == order.User.Email {
-				break User
+				continue User
 			}
 		}
 
 		missing = append(missing, user)
 	}
 
+	return missing, nil
 }
